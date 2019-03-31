@@ -47,10 +47,6 @@ class HomebrewComponent(NXSDComponent):
                 Path(self._hbmenu_source_directory, 'nx-hbmenu.nro'),
                 Path(dest_sd, 'hbmenu.nro'),
             ),
-            'config': (
-                Path(settings.defaults_directory, 'atmosphere/loader.ini'),
-                Path(dest_sd, 'atmosphere/loader.ini'),
-            ),
         }
         self._copy_components(component_dict)
 

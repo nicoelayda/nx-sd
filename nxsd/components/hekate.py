@@ -32,12 +32,16 @@ class HekateComponent(NXSDComponent):
     def install(self, install_directory):
         self._build()
 
+        dest_ams = Path(install_directory, 'sdcard/atmosphere/')
         dest_bootloader = Path(install_directory, 'sdcard/bootloader/')
         
         component_dict = {
             'payload': (
                 Path(self._source_directory, 'output/hekate.bin'),
-                Path(install_directory, 'payload/hekate.bin'),
+                [
+                    Path(install_directory, 'payload/hekate.bin'),
+                    Path(dest_ams, 'reboot_payload.bin'),
+                ],
             ),
             'sleep_module': (
                 Path(self._source_directory, 'output/libsys_lp0.bso'),
