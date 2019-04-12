@@ -6,8 +6,8 @@ from nxsd.components import NXSDComponent
 from nxsd.config import settings
 from pathlib import Path
 
-ATMOSPHERE_VERSION = 'v0.8.6'
-ATMOSPHERE_COMMIT_OR_TAG = '994d7d5'
+ATMOSPHERE_VERSION = 'v0.8.7'
+ATMOSPHERE_COMMIT_OR_TAG = '0.8.7'
 
 
 class AtmosphereComponent(NXSDComponent):
