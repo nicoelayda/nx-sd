@@ -3,7 +3,7 @@ from nxsd.config import settings
 from pathlib import Path
 
 # Corresponds to Nintendo Switch system software version
-SIGPATCHES_VERSION = '7.0.1'
+SIGPATCHES_VERSION = '8.0.0'
 
 
 class SigpatchesComponent(NXSDComponent):
