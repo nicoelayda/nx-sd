@@ -6,8 +6,8 @@ from nxsd.components import NXSDComponent
 from nxsd.config import settings
 from pathlib import Path
 
-ATMOSPHERE_VERSION = 'v0.8.8'
-ATMOSPHERE_COMMIT_OR_TAG = 'a09c089'
+ATMOSPHERE_VERSION = 'v0.8.9'
+ATMOSPHERE_COMMIT_OR_TAG = '0.8.9'
 
 
 class AtmosphereComponent(NXSDComponent):
@@ -60,6 +60,17 @@ class AtmosphereComponent(NXSDComponent):
                 Path(self._source_directory, 'stratosphere/creport/creport.nsp'),
                 Path(dest_ams, 'titles/0100000000000036/exefs.nsp'),
             ),
+            'ro': (
+                Path(self._source_directory, 'stratosphere/ro/ro.nsp'),
+                Path(dest_ams, 'titles/0100000000000037/exefs.nsp'),
+            ),
+            'boot2.flag': (
+                Path(settings.defaults_directory, 'atmosphere/boot2.flag'),
+                [
+                    Path(dest_ams, 'titles/0100000000000032/flags/boot2.flag'),
+                    Path(dest_ams, 'titles/0100000000000037/flags/boot2.flag'),
+                ],
+            ),
             'fusee-secondary': (
                 Path(self._source_directory, 'fusee/fusee-secondary/fusee-secondary.bin'),
                 [
@@ -101,11 +112,6 @@ class AtmosphereComponent(NXSDComponent):
             ),
         }
         self._copy_components(component_dict)
-
-        _, eclct_stub_dir = component_dict['eclct.stub']
-        eclct_stub_flags_dir = Path(eclct_stub_dir.parent, 'flags')
-        eclct_stub_flags_dir.mkdir(parents=True, exist_ok=True)
-        open(Path(eclct_stub_flags_dir, 'boot2.flag'), 'a').close()
 
     def clean(self):
         with util.change_dir(self._source_directory):
